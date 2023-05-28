@@ -47,7 +47,7 @@ runs:
           if [ "${{ inputs.branch }}" == "legacy" ]; then
             if [[ "${{ inputs.board }}" == "rock-3a" || "${{ inputs.board }}" == "hinlink-h66k" || "${{ inputs.board }}" == "hinlink-h68k" ]]; then
               echo "desktop_appgroups_selected=\"3dsupport browsers chat desktop_tools editors email internet multimedia office programming remote_desktop rockchip-multimedia\"" >> $GITHUB_ENV
-            elif [[ "${{ inputs.board }}" == "rock-5b" || "${{ inputs.board }}" == "hinlink-h88k" || "${{ inputs.board }}" == "orangepi5" || "${{ inputs.board }}" == "rock-5a" ]]; then
+            elif [[ "${{ inputs.board }}" == "rock-5b" || "${{ inputs.board }}" == "hinlink-h88k" || "${{ inputs.board }}" == "orangepi5" || "${{ inputs.board }}" == "orangepi5-plus" || "${{ inputs.board }}" == "rock-5a" ]]; then
               echo "desktop_appgroups_selected=\"3dsupport browsers chat desktop_tools editors email internet multimedia office programming remote_desktop rockchip-multimedia panfork-mesa\"" >> $GITHUB_ENV
             else
               echo "desktop_appgroups_selected=\"3dsupport browsers chat desktop_tools editors email internet multimedia office programming remote_desktop\"" >> $GITHUB_ENV
@@ -63,11 +63,7 @@ runs:
         touch .ignore_changes
         mkdir -p arch/arm64/boot/dts/rockchip/
         sed -i "s|ext4|fat|g" config/boards/rock-5b.conf
-        mkdir -p patch/kernel/archive/rk35xx-5.10
-        wget https://github.com/amazingfate/armbian-h68k-images/raw/master/backport-v6.0.16.patch -O patch/kernel/archive/rk35xx-5.10/backport-6.0.16.patch
-        wget https://github.com/amazingfate/armbian-h68k-images/raw/master/linux-rk35xx-legacy.config -O config/kernel/linux-rk35xx-legacy.config
-        wget https://github.com/amazingfate/armbian-h68k-images/raw/master/hinlink-h66k.conf -O config/boards/hinlink-h66k.conf
-        wget https://github.com/amazingfate/armbian-h68k-images/raw/master/hinlink-h68k.conf -O config/boards/hinlink-h68k.conf
+        wget https://raw.githubusercontent.com/efectn/armbian-images/master/orangepi5-plus.conf -O config/boards/orangepi5-plus.conf
         mkdir -p config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/liujianfeng1994.gpg -O config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/rockchip-multimedia.gpg
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/rockchip-multimedia.source -O config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/rockchip-multimedia.source
