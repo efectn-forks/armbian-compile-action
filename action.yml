@@ -22,8 +22,8 @@ runs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        repository: armbian/build
-        ref: main
+        repository: efectn-forks/build
+        ref: update-rk3588-edge-branch
         path: build
     - name: Set env
       shell: bash
@@ -40,8 +40,8 @@ runs:
         then
           echo "release=jammy" >> $GITHUB_ENV
           echo "build-minimal=no" >> $GITHUB_ENV
-          echo "build-desktop=yes" >> $GITHUB_ENV
-          echo "desktop-environment=gnome" >> $GITHUB_ENV
+          echo "build-desktop=no" >> $GITHUB_ENV
+          #echo "desktop-environment=gnome" >> $GITHUB_ENV
           echo "desktop-environment-config-name=config_base" >> $GITHUB_ENV
           echo "expert=yes" >> $GITHUB_ENV
           if [ "${{ inputs.branch }}" == "legacy" ]; then
@@ -63,8 +63,8 @@ runs:
         touch .ignore_changes
         mkdir -p arch/arm64/boot/dts/rockchip/
         sed -i "s|ext4|fat|g" config/boards/rock-5b.conf
-        wget -q https://raw.githubusercontent.com/efectn-forks/build/opi5-bt-support/config/boards/orangepi5.conf -O config/boards/orangepi5.conf
-        wget https://raw.githubusercontent.com/efectn/armbian-images/master/orangepi5-plus.conf -O config/boards/orangepi5-plus.conf
+        #wget -q https://raw.githubusercontent.com/efectn-forks/build/opi5-bt-support/config/boards/orangepi5.conf -O config/boards/orangepi5.conf
+        #wget https://raw.githubusercontent.com/efectn/armbian-images/master/orangepi5-plus.conf -O config/boards/orangepi5-plus.conf
         mkdir -p config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/liujianfeng1994.gpg -O config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/rockchip-multimedia.gpg
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/rockchip-multimedia.source -O config/desktop/jammy/appgroups/rockchip-multimedia/sources/apt/rockchip-multimedia.source
