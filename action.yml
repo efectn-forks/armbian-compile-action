@@ -23,7 +23,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: efectn-forks/build
-        ref: update-rk3588-edge-branch
+        ref: add-yy3568
         path: build
     - name: Set env
       shell: bash
