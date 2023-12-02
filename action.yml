@@ -23,7 +23,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: efectn-forks/build
-        ref: add-yy3568
+        ref: rock5b-hdmi-vop-edge
         path: build
     - name: Set env
       shell: bash
