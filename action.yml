@@ -89,7 +89,8 @@ runs:
         SHARE_LOG=yes \
         DEBUG=yes \
         ARMBIAN_FIRMWARE_GIT_SOURCE="https://github.com/efectn-forks/firmware" \
-        ARMBIAN_FIRMWARE_GIT_BRANCH="mali-csf-upstream" \ 
+        ARMBIAN_FIRMWARE_GIT_BRANCH="mali-csf-upstream" \
+        EXT="mesa-oibaf" \
         COMPRESS_OUTPUTIMAGE=sha,gpg,xz
     - name: Upload
       if: inputs.release-id != '' && inputs.github-token != ''
