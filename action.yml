@@ -86,9 +86,11 @@ runs:
         DESKTOP_ENVIRONMENT_CONFIG_NAME=${{ env.desktop-environment-config-name }} \
         DESKTOP_APPGROUPS_SELECTED=${{ env.desktop_appgroups_selected }} \
         EXPERT=${{ env.expert }} \
-        BOARD_FIRMWARE_INSTALL="-full" \
         SHARE_LOG=yes \
         DEBUG=yes \
+        ARMBIAN_FIRMWARE_GIT_SOURCE="https://github.com/efectn-forks/firmware" \
+        ARMBIAN_FIRMWARE_GIT_BRANCH="mali-csf-upstream" \ 
+        ENABLE_EXTENSIONS="mesa-oibaf" \
         COMPRESS_OUTPUTIMAGE=sha,gpg,xz
     - name: Upload
       if: inputs.release-id != '' && inputs.github-token != ''
