@@ -73,6 +73,7 @@ runs:
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/liujianfeng1994.gpg -O config/desktop/jammy/appgroups/panfork-mesa/sources/apt/panfork-mesa.gpg
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/panfork-mesa.source -O config/desktop/jammy/appgroups/panfork-mesa/sources/apt/panfork-mesa.source
         wget https://github.com/amazingfate/armbian-compile-action/raw/main/panfork-mesa.packages -O config/desktop/jammy/appgroups/panfork-mesa/packages
+        wget https://raw.githubusercontent.com/efectn/armbian-images/master/amazingfated-rk3588.sh -O extensions
         git status
         docker pull ghcr.io/armbian/docker-armbian-build:armbian-ubuntu-jammy-latest
         ./compile.sh \
@@ -88,9 +89,7 @@ runs:
         EXPERT=${{ env.expert }} \
         SHARE_LOG=yes \
         DEBUG=yes \
-        ARMBIAN_FIRMWARE_GIT_SOURCE="https://github.com/efectn-forks/firmware" \
-        ARMBIAN_FIRMWARE_GIT_BRANCH="mali-csf-upstream" \
-        EXT="mesa-oibaf" \
+        EXT="amazingfated-rk3588" \
         COMPRESS_OUTPUTIMAGE=sha,gpg,xz
     - name: Upload
       if: inputs.release-id != '' && inputs.github-token != ''
